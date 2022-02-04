@@ -68,7 +68,7 @@ const Header = () => {
         </Navbar>
       </div>
 
-      <Navbar color="#000" position="static" className={classes.nav}>
+      <Navbar color="#000" className={classes.nav}>
         <Container>
           <Navbar.Brand style={{
               fontSize:'20px'
