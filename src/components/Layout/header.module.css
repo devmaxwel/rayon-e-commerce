@@ -1,0 +1,25 @@
+.nav{
+    color: #000;
+    height: 80px;
+    font-size: 20px;
+    background: #fff !important;
+}
+
+.top{
+    display:grid;
+    grid-template-columns: 0.2fr 3fr 2fr;
+    height: 70px;
+   
+}
+
+.nav1{
+    background: #DE4D40 !important;
+}
+
+.nav2{
+    background: orange !important;
+}
+
+.nav3{
+    background: #DE4D40 !important;
+}
