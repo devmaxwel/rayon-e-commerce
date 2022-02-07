@@ -133,7 +133,7 @@ const Cart = () => {
             }}
             variant="success"
           >
-            Click to Receive Payment Notfication{" "}
+            PAY(Receive STK Push){" "}
           </Button>
         </div>
       </div>
