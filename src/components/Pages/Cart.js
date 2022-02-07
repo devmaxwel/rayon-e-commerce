@@ -39,7 +39,7 @@ const Cart = () => {
   }, [cart]);
 
   const delivery = (0.5 / 100) * total;
-  const totalPrice = delivery + total;
+  const totalPrice =Math.round( delivery + total).toFixed();
 
 
 
