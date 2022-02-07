@@ -34,6 +34,12 @@ const Cart = () => {
   const delivery = (0.5 / 100) * total;
   const totalPrice = delivery + total;
 
+  function numberWithCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
+
   return (
     <div className={classes.home}>
       <div className={classes.productContainer}>
@@ -96,9 +102,9 @@ const Cart = () => {
       </div>
       <div className={classes.filtercart}>
         <span>Checkout ({cart.length}) Items</span>
-        <span>Items Total Price Ksh: {total}</span>
-        <span>Delivery Fee: {delivery}</span>
-        <span>Total Fee Ksh: {totalPrice}</span>
+        <span>Items  Price Ksh: {numberWithCommas(total)}</span>
+        <span>Delivery Fee: {numberWithComas(delivery)}</span>
+        <span>Total Price Ksh: {numberWithCommas(totalPrice)}</span>
 
         <div className={classes.payment}>
           <img src={pesa} alt="pesa" />
