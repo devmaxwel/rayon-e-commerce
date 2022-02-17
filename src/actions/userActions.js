@@ -14,23 +14,22 @@ export const register = (username, email, password) => async (dispatch) => {
     dispatch({
       type: USER_REGISTRATION_REQUEST,
     });
-    const url = `${REACT_APP_SERVER_URL}api/createuser`;
+    const url = `${process.env.REACT_APP_SERVER_URL}api/createuser`;
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-type": "application/json",
       },
     };
-    const { data } = axios.post(
+    const { data } = await axios.post(
       url,
       {
+        username,
         email,
         password,
-        username,
+       
       },
-      { config }
+     config 
     );
-
-    localStorage.setItem("userInfo", JSON.stringify(data));
 
     dispatch({
       type: USER_REGISTRATION_SUCCESS,
@@ -41,15 +40,13 @@ export const register = (username, email, password) => async (dispatch) => {
       type: USER_LOGIN_SUCCESS,
       payload: data,
     });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
 
+    localStorage.setItem("userInfo", JSON.stringify(data));
+
+  } catch (error) {
     dispatch({
       type: USER_REGISTRATION_FAIL,
-      payload: message,
+      payload:  error.response.data.errorMessage
     });
   }
 };
@@ -59,43 +56,39 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({
       type: USER_LOGIN_REQUEST,
     });
-    const url = `${REACT_APP_SERVER_URL}api/loginuser`;
+
+    const url = `${process.env.REACT_APP_SERVER_URL}api/loginuser`;
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-type": "application/json",
       },
     };
-    const { data } = axios.post(
+    const { data } = await axios.post(
       url,
       {
         email,
         password,
       },
-      { config }
+      config
     );
-
-    localStorage.setItem("userInfo", JSON.stringify(data));
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
     });
+    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
-    const message =
-      error.response && error.response.body.message
-        ? error.response.message
-        : error.message;
-
+    console.log("error is ", error);
     dispatch({
       type: USER_LOGIN_FAIL,
-      payload: message,
+      payload: error.response.data.errorMessage,
     });
   }
 };
 
 export const logout = () => async (dispatch) => {
-    localStorage.removeItem('userInfo');
-    dispatch({
-        type:USER_LOG_OUT
-    })
+  localStorage.removeItem("userInfo");
+  dispatch({
+    type: USER_LOG_OUT,
+  });
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../../constants/cartConstants";
+import { AddToCartAction, RemoveFromCart } from "../../actions/cartActions";
 import classes from "./home.module.css";
 
 export function numberWithComas(x) {
@@ -14,6 +14,15 @@ const SingleProduct = ({ product }) => {
 
   const cartList = useSelector((state) => state.cartList);
   const { cart } = cartList;
+
+  const handleAddToCart=()=>{
+    dispatch(AddToCartAction(product))
+
+  }
+
+  const handleRemoveFromCart=(product)=>{
+         dispatch(RemoveFromCart(product))
+  }
 
   return (
     <div className={classes.products}>
@@ -49,12 +58,7 @@ const SingleProduct = ({ product }) => {
                     fontWeight: "bolder",
                   }}
                   variant="danger"
-                  onClick={() => {
-                    dispatch({
-                      type: REMOVE_FROM_CART,
-                      payload: product,
-                    });
-                  }}
+                  onClick={() => handleRemoveFromCart(product)}
                 >
                   {" "}
                   DROP ITEM
@@ -71,12 +75,7 @@ const SingleProduct = ({ product }) => {
                   }}
                   variant="warning"
                   disabled={!product.inStock}
-                  onClick={() => {
-                    dispatch({
-                      type: ADD_TO_CART,
-                      payload: product,
-                    });
-                  }}
+                  onClick={handleAddToCart}
                 >
                   {!product.inStock ? "Out of Stock" : "ADD TO CART"}{" "}
                   <FaShoppingCart

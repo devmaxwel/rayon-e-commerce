@@ -5,6 +5,7 @@ import {
   USER_REGISTRATION_FAIL,
   USER_REGISTRATION_REQUEST,
   USER_REGISTRATION_SUCCESS,
+  USER_LOGIN_FAIL
 } from "../constants/userConstants";
 
 export const userRegistration = (state = {}, action) => {
@@ -40,7 +41,7 @@ export const userLogin = (state = {}, action) => {
         loading:false,
         userInfo: action.payload,
       };
-    case USER_REGISTRATION_FAIL:
+    case USER_LOGIN_FAIL:
         return{
         loading:false,
         error:action.payload

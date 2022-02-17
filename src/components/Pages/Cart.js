@@ -15,8 +15,10 @@ import { numberWithComas } from "../Home/SingleProduct";
 import { AiFillDelete } from "react-icons/ai";
 import {
   CHANGE_CART_QUANTITY,
-  REMOVE_FROM_CART,
+  
 } from "../../constants/cartConstants";
+import { RemoveFromCart } from "../../actions/cartActions";
+
 
 
 function numberWithCommas(x) {
@@ -41,6 +43,7 @@ const Cart = () => {
   const delivery = (0.5 / 100) * total;
   const totalPrice =Math.round( delivery + total).toFixed();
 
+  
 
 
   return (
@@ -78,7 +81,7 @@ const Cart = () => {
                       }}
                     >
                       {[...Array(products.inStock).keys()].map((x) => (
-                        <option key={x + 1}>{x + 1}</option>
+                        <option key={x + 1}>{ x + 1}</option>
                       ))}
                     </FormControl>
                   </Col>
@@ -89,12 +92,7 @@ const Cart = () => {
                         fontSize: "20px",
                         cursor: "pointer",
                       }}
-                      onClick={() => {
-                        dispatch({
-                          type: REMOVE_FROM_CART,
-                          payload: products,
-                        });
-                      }}
+                      onClick={() => dispatch(RemoveFromCart(products))}
                     />
                   </Col>
                 </Row>

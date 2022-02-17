@@ -9,23 +9,25 @@ export const cartReducer = (state = { cart: [] }, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        cart: [...state.cart, { ...action.payload, qty: 1 }],
+        cart: action.payload
       };
 
     case REMOVE_FROM_CART:
       return {
         ...state,
-        cart: state.cart.filter((crt) => crt._id !== action.payload._id),
+        cart: action.payload
       };
+      
     case CHANGE_CART_QUANTITY:
       return {
         ...state,
-        cart: state.cart.filter((crt) =>
-          crt._id === action.payload._id ? crt.qty = action.payload.qty : crt.qty
-        ),
+        cart: state.cart.filter((p) =>
+        p._id === action.payload._id ? p.qty = action.payload.qty : p.qty
+      ),
       };
 
     default:
       return state;
   }
 };
+

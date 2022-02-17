@@ -8,20 +8,31 @@ import {
   Nav,
   Navbar,
 } from "react-bootstrap";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { GiShoppingCart } from "react-icons/gi";
 import { BsWhatsapp } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import classes from "./header.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { AiFillDelete } from "react-icons/ai";
-import { REMOVE_FROM_CART } from "../../constants/cartConstants";
 import { numberWithComas } from "../Home/SingleProduct";
+import { RemoveFromCart } from "../../actions/cartActions";
+import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
+import { FcApproval } from "react-icons/fc";
+import { AiOutlineUserAdd } from "react-icons/ai";
+import { logout } from '../../actions/userActions'
 
 const Header = () => {
   const dispatch = useDispatch();
   const cartList = useSelector((state) => state.cartList);
+  const userLog = useSelector((state) => state.userLog);
   const { cart } = cartList;
+  const { userInfo } = userLog;
+
+  const handleLogOut=()=>{
+    dispatch(logout())
+    window.location.reload()
+  }
 
   return (
     <>
@@ -93,7 +104,12 @@ const Header = () => {
               fontSize: "20px",
             }}
           >
-            <Link to="/">
+            <Link
+              style={{
+                textDecoration: "none",
+              }}
+              to="/"
+            >
               RAYON{" "}
               <GiShoppingCart
                 style={{
@@ -117,9 +133,137 @@ const Header = () => {
             </Button>
           </Navbar.Text>
           <Nav>
+            {userInfo ? (
+              <>
+                <Dropdown
+                  style={{
+                    padding: "5px",
+                  }}
+                >
+                  <Dropdown.Toggle>
+                    <FaUserCircle
+                      style={{
+                        color: "#fff",
+                        fontSize: "30px",
+                      }}
+                    />{" "}
+                    <span>Hi, {userInfo.username}</span>
+                  </Dropdown.Toggle>
+                  <DropdownMenu>
+                    <Link
+                      style={{
+                        textDecoration: "none",
+                        paddingTop: "5px",
+                      }}
+                      to="/account"
+                    >
+                      <span
+                        style={{
+                          fontSize: "15px",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          display: "flex",
+                        }}
+                      >
+                        <AiOutlineUserAdd
+                          style={{
+                            fontSize: "30px",
+                            margin: "10px",
+                          }}
+                        />{" "}
+                        My Account
+                      </span>
+                    </Link>
+                    <Link
+                      style={{
+                        textDecoration: "none",
+                        paddingTop: "5px",
+                      }}
+                      to="/account"
+                    >
+                      <span
+                        style={{
+                          fontSize: "15px",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          display: "flex",
+                        }}
+                      >
+                        <FcApproval
+                          style={{
+                            fontSize: "30px",
+                            margin: "10px",
+                          }}
+                        />{" "}
+                        My Orders
+                      </span>
+                    </Link>
+                    <hr />
+                    <div style={{
+                      alignItems: "center",
+                      justifyContent: "center",
+                      display: "flex",
+                    }}>
+                    <Button
+                      style={{
+                        width: "150px",
+                        background: "#DC3545",
+                      }}
+
+                      onClick={handleLogOut}
+                    >
+                      SIGN OUT
+                    </Button>
+                    </div>
+                  </DropdownMenu>
+                </Dropdown>
+              </>
+            ) : (
+              <Dropdown
+                style={{
+                  padding: "5px",
+                }}
+              >
+                <Dropdown.Toggle
+                  variant="warning"
+                  style={{
+                    width: "90px",
+                    height: "40px",
+                  }}
+                >
+                  <FaUserCircle
+                    style={{
+                      color: "#fff",
+                      fontSize: "30px",
+                    }}
+                  />
+                  <DropdownMenu>
+                    <Link
+                      to="/login"
+                      style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        display: "flex",
+                        textDecoration: "none",
+                      }}
+                    >
+                      <Button
+                        style={{
+                          width: "100px",
+                          background: "#DC3545",
+                        }}
+                      >
+                        SIGN IN
+                      </Button>
+                    </Link>
+                    <hr />
+                  </DropdownMenu>
+                </Dropdown.Toggle>
+              </Dropdown>
+            )}
             <Dropdown className="btn-group dropleft">
               <Dropdown.Toggle variant="warning">
-                <FaShoppingCart color="#fff" fontSize="27px" />
+                <FaShoppingCart color="#fff" fontSize="20px" />
                 <Badge
                   bg="white"
                   style={{
@@ -155,28 +299,27 @@ const Header = () => {
                             style={{
                               color: "red",
                               fontSize: "20px",
-                              cursor:'pointer'
+                              cursor: "pointer",
                             }}
                             onClick={() => {
-                              dispatch({
-                                type: REMOVE_FROM_CART,
-                                payload: product,
-                              });
+                              dispatch(RemoveFromCart(product));
                             }}
                           />
-
-                         
                         </span>
-                       
                       );
                     })}
-                      <Link to='/cart'>
-                        <Button variant='warning' style={{
-                          margin:'0 10px',
-                          width:"95%",
-                          fontWeight:'bolder'
-                        }}>Proceed To Check Out</Button>
-                      </Link>
+                    <Link to={userInfo?('/cart'):('/login')}>
+                      <Button
+                        variant="warning"
+                        style={{
+                          margin: "0 10px",
+                          width: "95%",
+                          fontWeight: "bolder",
+                        }}
+                      >
+                        Proceed To Check Out
+                      </Button>
+                    </Link>
                   </div>
                 ) : (
                   <span>Cart is Empty</span>
