@@ -74,15 +74,10 @@
     .search{
         display: none;
     }
-    .top{
-        display: flex;
-    }
   
-    .nav1,.nav3{
+   .top{
        display: none;
-       width: 100%;
-        
-    }
+   }
 
     .items{
         width: 100%;
