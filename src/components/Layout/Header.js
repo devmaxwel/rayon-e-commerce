@@ -190,9 +190,10 @@ const Header = () => {
                         fontSize: "30px",
                       }}
                     />{" "}
-                   
+                     <span className={classes.username} >Hi, {userInfo.username}</span>
                   </Dropdown.Toggle>
                   <DropdownMenu>
+                 
                     <Link
                       style={{
                         textDecoration: "none",

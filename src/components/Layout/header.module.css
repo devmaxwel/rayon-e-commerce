@@ -89,6 +89,11 @@
     }
     .mobile{
         display: block;
+        height: 70px;
+        padding: 2px;
+    }
+    .username{
+        display:none;
     }
 
 }
