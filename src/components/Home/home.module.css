@@ -116,12 +116,13 @@
 
     .products{
         width: 100%;
+        margin: 2px;
     }
     .banner img{
         display: none;
     }
     .filtercart{
-        width:40%;
+        width:90%;
         padding:10px;
         margin: 4px;
         height: 350px;

@@ -57,7 +57,7 @@ const Cart = () => {
         <Container>
           <ListGroup>
             {cart.map((products) => (
-              <ListGroup.Item>
+              <ListGroup.Item key={products._id}>
                 <Row>
                   <Col md={2}>
                     <Image src={products.image} fluid rounded />
