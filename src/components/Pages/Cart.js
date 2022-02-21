@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "../Home/home.module.css";
-import pesa from "../../img/pesa.jpg";
 import {
   Container,
   ListGroup,
@@ -11,11 +10,11 @@ import {
   Col,
   Image,
 } from "react-bootstrap";
+
 import { numberWithComas } from "../Home/SingleProduct";
 import { AiFillDelete } from "react-icons/ai";
 import { changeCartQTY, RemoveFromCart } from "../../actions/cartActions";
-
-
+import { Link } from "react-router-dom";
 
 
 function numberWithCommas(x) {
@@ -25,9 +24,12 @@ function numberWithCommas(x) {
 }
 
 const Cart = () => {
+
   const dispatch = useDispatch();
+  const userLog = useSelector((state) => state.userLog);
   const cartList = useSelector((state) => state.cartList);
- 
+  
+  const { userInfo } = userLog;
   const { cart } = cartList;
   const [total, setTotal] = useState();
 
@@ -44,7 +46,7 @@ const Cart = () => {
     dispatch(RemoveFromCart(products))
   }
 
-  const handleCartChange=(products)=>{
+  const handleQtyChange=(products)=>{
        dispatch(changeCartQTY(products))
   }
 
@@ -73,7 +75,7 @@ const Cart = () => {
                     <FormControl
                       as="select"
                       value={products.qty}
-                      onChange={(e) => handleCartChange({
+                      onChange={(e) => handleQtyChange({
                         qty:e.target.value,
                         _id:(products._id)
                       })}
@@ -106,31 +108,28 @@ const Cart = () => {
         <span>Total Price Ksh: {numberWithCommas(totalPrice)}</span>
 
         <div className={classes.payment}>
-          <img src={pesa} alt="pesa" />
-          <FormControl
-            className="m-auto"
-            placeholder="Enter Phone Number"
-            style={{
-              width: 300,
-              margin: "0 10px",
-            }}
-          ></FormControl>
+          
         </div>
         <div
           style={{
             paddingTop: "30px",
           }}
         >
-          <Button
+         <Link to={
+          userInfo?('/checkout'):('/login')
+         }>
+         <Button
             style={{
-              width: "95%",
               margin: "0 10px",
-              padding: "15px",
+              padding: "10px",
+              color:"#fff",
+              fontWeight:"bolder"
             }}
-            variant="success"
+            variant="warning"
           >
-            PAY(Receive STK Push){" "}
+            Check Out{" "}
           </Button>
+         </Link>
         </div>
       </div>
     </div>
@@ -138,14 +137,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-
-// {
-//   dispatch({
-//     type:CHANGE_CART_QUANTITY,
-//     payload:{
-//       _id: products._id,
-//       qty: e.target.value
-//     },
-//   })
-// }

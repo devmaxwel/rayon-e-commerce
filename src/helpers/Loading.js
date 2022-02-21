@@ -1,7 +1,7 @@
 import React from 'react';
 import { Spinner } from 'react-bootstrap';
 
-const Loading = ({size=1000}) => {
+const Loading = ({size=100}) => {
   return <div style={{
       display:'flex',
       justifyContent:'center',
@@ -11,8 +11,7 @@ const Loading = ({size=1000}) => {
   }}>
       <Spinner style={{
           size:size,
-          heigh:size
-      }} animation='border' color='red' />
+      }} animation='border' color='#ff0' />
   </div>;
 };
 

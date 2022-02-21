@@ -46,3 +46,48 @@
     padding: 0 20px;
     flex-direction: column;
 }
+
+/* Table Media Queries */
+
+@media(max-width: 768px){
+    .search{
+        display: none;
+    }
+  
+     .nav2,.nav3{
+        height: 70px;
+        
+    }
+
+    .items{
+        width: 100%;
+        padding-left: 50px;
+    }
+    
+
+}
+
+/* Mobile device Queries */
+
+
+@media(max-width: 480px){
+    .search{
+        display: none;
+    }
+    .top{
+        display: flex;
+    }
+  
+    .nav1,.nav3{
+       display: none;
+       width: 100%;
+        
+    }
+
+    .items{
+        width: 100%;
+        padding-left: 50px;
+    }
+    
+
+}

@@ -42,7 +42,7 @@ const Header = () => {
     <>
       <div className={classes.top}>
         <Navbar className={classes.nav1}>
-          <Container></Container>
+
         </Navbar>
 
         <Navbar className={classes.nav2}>
@@ -124,18 +124,22 @@ const Header = () => {
               />
             </Link>
           </Navbar.Brand>
-          <Navbar.Text className="d-flex p-5 m-auto">
+         <div className={classes.search}>
+         <Navbar.Text className="d-flex p-5 m-auto">
             <FormControl
+             
               className="m-auto"
               placeholder="search products, brands, categories"
               style={{
                 width: 300,
+                
               }}
             ></FormControl>
-            <Button className="m-2" variant="warning" color="#fff">
+            <Button  className="m-2" variant="warning" color="#fff">
               Search
             </Button>
           </Navbar.Text>
+         </div>
           <Nav>
             {userInfo ? (
               <>
@@ -265,7 +269,7 @@ const Header = () => {
                 </Dropdown.Toggle>
               </Dropdown>
             )}
-            <Dropdown className="btn-group dropleft">
+            <Dropdown  className="btn-group dropleft">
               <Dropdown.Toggle variant="warning">
                 <FaShoppingCart color="#fff" fontSize="20px" />
                 <Badge
@@ -286,7 +290,7 @@ const Header = () => {
                 className=""
               >
                 {cart.length > 0 ? (
-                  <div>
+                  <div className={classes.items}>
                     {cart.map((product) => {
                       return (
                         <span key={product._id} className={classes.cartItem}>
@@ -310,13 +314,14 @@ const Header = () => {
                         </span>
                       );
                     })}
-                    <Link to={userInfo?('/cart'):('/login')}>
+                    <Link to='/cart'>
                       <Button
                         variant="warning"
                         style={{
                           margin: "0 10px",
-                          width: "95%",
+                          width: "75%",
                           fontWeight: "bolder",
+                          color:"#fff"
                         }}
                       >
                         Proceed To Check Out
