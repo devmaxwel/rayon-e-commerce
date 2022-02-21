@@ -47,6 +47,10 @@
     flex-direction: column;
 }
 
+.mobile{
+    display: none;
+}
+
 /* Table Media Queries */
 
 @media(max-width: 768px){
@@ -83,6 +87,8 @@
         width: 100%;
         padding-left: 50px;
     }
-    
+    .mobile{
+        display: block;
+    }
 
 }

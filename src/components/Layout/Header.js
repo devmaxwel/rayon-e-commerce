@@ -40,6 +40,41 @@ const Header = () => {
 
   return (
     <>
+    <div className={classes.mobile}>
+    <Navbar className={classes.nav2}>
+          <div
+            style={{
+              textAlign: "center",
+              display: "flex",
+              padding: "0 20px",
+              margin: "0 20px",
+              color: "#fff",
+              fontWeight: "bold",
+            }}
+          >
+            <div
+              id="carouselExampleSlidesOnly"
+              className="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div className="carousel-inner">
+                <div className="carousel-item active">
+                  <h3
+                    style={{
+                      fontWeight: "bold",
+                    }}
+                  >
+                    FAST DELIVERY WITHIN NAIROBI
+                  </h3>
+                </div>
+                <div className="carousel-item">
+                  <h2>0.5% Delivery Fee</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Navbar>
+    </div>
       <div className={classes.top}>
         <Navbar className={classes.nav1}>
 
@@ -155,7 +190,7 @@ const Header = () => {
                         fontSize: "30px",
                       }}
                     />{" "}
-                    <span>Hi, {userInfo.username}</span>
+                   
                   </Dropdown.Toggle>
                   <DropdownMenu>
                     <Link
@@ -175,7 +210,7 @@ const Header = () => {
                       >
                         <AiOutlineUserAdd
                           style={{
-                            fontSize: "30px",
+                            fontSize: "20px",
                             margin: "10px",
                           }}
                         />{" "}
