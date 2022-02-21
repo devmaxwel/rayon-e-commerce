@@ -16,7 +16,7 @@ import classes from "./header.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { AiFillDelete } from "react-icons/ai";
 import { numberWithComas } from "../Home/SingleProduct";
-import { RemoveFromCart } from "../../actions/cartActions";
+import { RemoveFromCart, RemoveFromHeaderCart } from "../../actions/cartActions";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { FcApproval } from "react-icons/fc";
 import { AiOutlineUserAdd } from "react-icons/ai";
@@ -32,6 +32,10 @@ const Header = () => {
   const handleLogOut=()=>{
     dispatch(logout())
     window.location.reload()
+  }
+
+  const handleRemove=(product)=> {
+    dispatch(RemoveFromHeaderCart(product))
   }
 
   return (
@@ -301,9 +305,7 @@ const Header = () => {
                               fontSize: "20px",
                               cursor: "pointer",
                             }}
-                            onClick={() => {
-                              dispatch(RemoveFromCart(product));
-                            }}
+                            onClick={() => handleRemove(product)}
                           />
                         </span>
                       );

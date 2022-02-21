@@ -43,7 +43,9 @@ const Cart = () => {
   const delivery = (0.5 / 100) * total;
   const totalPrice =Math.round( delivery + total).toFixed();
 
-  
+  const handleRemove=(products)=>{
+    dispatch(RemoveFromCart(products))
+  }
 
 
   return (
@@ -92,7 +94,7 @@ const Cart = () => {
                         fontSize: "20px",
                         cursor: "pointer",
                       }}
-                      onClick={() => dispatch(RemoveFromCart(products))}
+                      onClick={() => handleRemove(products)}
                     />
                   </Col>
                 </Row>

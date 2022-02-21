@@ -16,7 +16,18 @@ export const AddToCartAction = (product) => async (dispatch, getState) => {
 
 localStorage.setItem('cart', JSON.stringify())
 
-export const RemoveFromCart = (product) => async (dispatch, getState) => {
+export const RemoveFromCart = (products) => async (dispatch, getState) => {
+  const {
+    cartList: { cart },
+  } = getState();
+
+  dispatch({
+    type: REMOVE_FROM_CART,
+    payload: cart.filter((p) => p._id !== products._id),
+  });
+};
+
+export const RemoveFromHeaderCart = (product) => async (dispatch, getState) => {
   const {
     cartList: { cart },
   } = getState();
@@ -26,4 +37,3 @@ export const RemoveFromCart = (product) => async (dispatch, getState) => {
     payload: cart.filter((p) => p._id !== product._id),
   });
 };
-
