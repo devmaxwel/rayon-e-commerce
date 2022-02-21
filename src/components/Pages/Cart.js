@@ -13,11 +13,8 @@ import {
 } from "react-bootstrap";
 import { numberWithComas } from "../Home/SingleProduct";
 import { AiFillDelete } from "react-icons/ai";
-import {
-  CHANGE_CART_QUANTITY,
-  
-} from "../../constants/cartConstants";
-import { RemoveFromCart } from "../../actions/cartActions";
+import { changeCartQTY, RemoveFromCart } from "../../actions/cartActions";
+
 
 
 
@@ -30,7 +27,7 @@ function numberWithCommas(x) {
 const Cart = () => {
   const dispatch = useDispatch();
   const cartList = useSelector((state) => state.cartList);
-
+ 
   const { cart } = cartList;
   const [total, setTotal] = useState();
 
@@ -45,6 +42,10 @@ const Cart = () => {
 
   const handleRemove=(products)=>{
     dispatch(RemoveFromCart(products))
+  }
+
+  const handleCartChange=(products)=>{
+       dispatch(changeCartQTY(products))
   }
 
 
@@ -72,15 +73,10 @@ const Cart = () => {
                     <FormControl
                       as="select"
                       value={products.qty}
-                      onChange={(e) => {
-                        dispatch({
-                          type:CHANGE_CART_QUANTITY,
-                          payload:{
-                            _id: products._id,
-                            qty: e.target.value
-                          },
-                        })
-                      }}
+                      onChange={(e) => handleCartChange({
+                        qty:e.target.value,
+                        _id:(products._id)
+                      })}
                     >
                       {[...Array(products.inStock).keys()].map((x) => (
                         <option key={x + 1}>{ x + 1}</option>
@@ -142,3 +138,14 @@ const Cart = () => {
 };
 
 export default Cart;
+
+
+// {
+//   dispatch({
+//     type:CHANGE_CART_QUANTITY,
+//     payload:{
+//       _id: products._id,
+//       qty: e.target.value
+//     },
+//   })
+// }

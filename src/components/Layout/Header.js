@@ -16,7 +16,7 @@ import classes from "./header.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { AiFillDelete } from "react-icons/ai";
 import { numberWithComas } from "../Home/SingleProduct";
-import { RemoveFromCart, RemoveFromHeaderCart } from "../../actions/cartActions";
+import { RemoveFromHeaderCart } from "../../actions/cartActions";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { FcApproval } from "react-icons/fc";
 import { AiOutlineUserAdd } from "react-icons/ai";
