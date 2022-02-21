@@ -89,8 +89,9 @@
     }
     .mobile{
         display: block;
-        height: 70px;
+        height: 80px;
         padding: 2px;
+        background: #DE4D40 !important;
     }
     .username{
         display:none;

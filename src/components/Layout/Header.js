@@ -41,7 +41,7 @@ const Header = () => {
   return (
     <>
     <div className={classes.mobile}>
-    <Navbar className={classes.nav2}>
+    <Navbar className={classes.nav1}>
           <div
             style={{
               textAlign: "center",
