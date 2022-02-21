@@ -106,14 +106,11 @@
 @media(max-width:480px){
 
     .filters{
-        width:30%;
-        padding:10px;
-        margin: 4px;
-        height: 300px;
+       display: none;
     }
 
     .productContainer{
-        width:70%;
+        width:100%;
         padding: 0;
     }
 
