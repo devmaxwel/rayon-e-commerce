@@ -15,7 +15,7 @@ import { Link} from "react-router-dom";
 import classes from "./header.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { AiFillDelete } from "react-icons/ai";
-import { numberWithComas } from "../Home/SingleProduct";
+import { numberWithComas } from "../Pages/Home";
 import { RemoveFromHeaderCart } from "../../actions/cartActions";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { FcApproval } from "react-icons/fc";

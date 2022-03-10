@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './home.module.css'
 import { Form, Button } from 'react-bootstrap'
-import banner from '../../img/mpesa-logo.jpg'
 
 const SideBar = () => {
   return <div className={classes.filters}>
@@ -32,10 +31,6 @@ const SideBar = () => {
         paddingTop:"10px",
         padding:'10px'
       }}>Clear Filters</Button>
-
-      <div className={classes.banner}>
-         <img src={banner} alt='m-pesa' />
-      </div>
   </div>;
 };
 

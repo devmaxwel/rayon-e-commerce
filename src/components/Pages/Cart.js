@@ -11,7 +11,7 @@ import {
   Image,
 } from "react-bootstrap";
 
-import { numberWithComas } from "../Home/SingleProduct";
+import { numberWithComas } from "../Pages/Home";
 import { AiFillDelete } from "react-icons/ai";
 import { changeCartQTY, RemoveFromCart } from "../../actions/cartActions";
 import { Link } from "react-router-dom";
