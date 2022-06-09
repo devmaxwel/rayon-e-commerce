@@ -12,11 +12,11 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [phone, setPhone] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [errormsg, setErrorMsg] = useState("");
 
   const dispatch = useDispatch();
-
   const userReg = useSelector((state) => state.userReg);
   const { userInfo, loading, error } = userReg;
   const history = useNavigate();
@@ -26,7 +26,7 @@ const SignUp = () => {
     if (password !== confirmpassword) {
       setErrorMsg("Passwords do no Match");
     } else {
-      dispatch(register(username,email,password));
+      dispatch(register(username, email, phone, password));
     }
   };
 
@@ -34,7 +34,7 @@ const SignUp = () => {
     if (userInfo) {
       history("/");
     }
-  }, [history,userInfo]);
+  }, [history, userInfo]);
 
   return (
     <>
@@ -43,8 +43,8 @@ const SignUp = () => {
           <div className={classes.loginContainer}>
             {loading && <Loading />}
             <div className={classes.logo}>
-            {error && <ErrorMessage>{error}</ErrorMessage>}
-            {errormsg && <ErrorMessage>{errormsg}</ErrorMessage> }
+              {error && <ErrorMessage>{error}</ErrorMessage>}
+              {errormsg && <ErrorMessage>{errormsg}</ErrorMessage>}
               <span>Create Account</span>
             </div>
             <div>
@@ -64,6 +64,14 @@ const SignUp = () => {
                   value={email}
                   autoComplete="off"
                   onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                  required
+                  type="text"
+                  placeholder="phone-number"
+                  value={phone}
+                  autoComplete="off"
+                  onChange={(e) => setPhone(e.target.value)}
                 />
                 <input
                   required
