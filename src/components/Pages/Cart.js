@@ -8,6 +8,7 @@ import {
   Row,
   Col,
   Image,
+  Button,
 } from "react-bootstrap";
 
 import { numberWithComas } from "../Pages/Home";
@@ -129,7 +130,7 @@ const Cart = () => {
           }}
         >
           <Link to={userInfo ? "/checkout" : "/login"}>
-            <button
+            <Button
               style={{
                 margin: "0 10px",
                 padding: "10px",
@@ -140,7 +141,7 @@ const Cart = () => {
               onClick={payTinyPesa}
             >
               Mpesa_PAY{" "}
-            </button>
+            </Button>
           </Link>
         </div>
       </div>
